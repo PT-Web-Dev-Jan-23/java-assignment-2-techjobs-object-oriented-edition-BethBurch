@@ -1,10 +1,10 @@
 package org.launchcode.techjobs.oo.test;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import org.launchcode.techjobs.oo.*;
-
 
 import static org.junit.Assert.*;
 
@@ -24,7 +24,7 @@ public class JobTest {
         assertNotEquals(job1, job2);
     }
 //TODO: In JobTest, define a test called testJobConstructorSetsAllFields.
-// Declare and initialize a new Job object with the following data:
+// Declare and initialize a new Job object(setFields) with the following data:
 // Use assertTrue and assertEquals statements to test that the constructor correctly assigns both the class
 // and value of each field. Your test should have 5 assert statements of each type.
     @Test
@@ -36,25 +36,19 @@ public class JobTest {
         assertTrue(setFields.getLocation() instanceof Location);
         assertTrue(setFields.getPositionType() instanceof PositionType);
         assertTrue(setFields.getCoreCompetency() instanceof CoreCompetency);
-        //
-        // The instanceof keyword can be used to check the class of an object.
-        //The result of the comparison is a boolean (aka assertTrue)
-        //Example: objectName instanceof ClassName
 
         assertEquals("Product tester", setFields.getName());
         assertEquals("ACME", setFields.getEmployer().getValue());
         assertEquals("Desert", setFields.getLocation().getValue());
         assertEquals("Quality control", setFields.getPositionType().getValue());
         assertEquals("Persistence", setFields.getCoreCompetency().getValue());
-        //
-        // If you had a Job instance, you could get the name of the employer this way job is an instance of Job
-        //Example: String employerName = job.getEmployer().getValue();
+
     }
 //
 //   TODO: In JobTest, define a test called testJobsForEquality.
 //    Generate two Job objects that have identical field values EXCEPT for id. Test that equals returns false.
     @Test
-    public void testJobsForEquality(){
+    public void testJobsForEquality() {
         Job job1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality Control"), new CoreCompetency("Persistence"));
         Job job2 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality Control"), new CoreCompetency("Persistence"));
 
@@ -62,11 +56,11 @@ public class JobTest {
         boolean notEqual = job1.equals(job2);
         //even tho all the values are same, the id will always be unique so job1.equals(job2) will always be false
         assertFalse(notEqual);
-
     }
-//    TODO:When passed a Job object, it should return a string that contains a blank line before and after the job information.
-//     The string should contain a label for each field, followed by the data stored in that field. Each field should be on its own line.
-//    TODO: If a field is empty, the method should add, “Data not available” after the label.
+
+// When passed a Job object, it should return a string that contains a blank line before and after the job information.
+//The string should contain a label for each field, followed by the data stored in that field. Each field should be on its own line.
+//If a field is empty, the method should add, “Data not available” after the label?
 //     (Bonus) If a Job object ONLY contains data for the id field, the method should return, “OOPS! This job does not seem to exist.”
 
     @Test
@@ -77,11 +71,12 @@ public class JobTest {
         assertEquals(jobTest.charAt(jobTest.length() - 1), '\n');
 
     }
-//    TODO: Code a new test for the second required behavior, named testToStringContainsCorrectLabelsAndData. Then run the tests to make sure the new one fails.
+//    TODO: Code a new test for the second required behavior, named testToStringContainsCorrectLabelsAndData.
+//     Then run the tests to make sure the new one fails.
 //     Modify toString to make the new test pass. Also, make sure that your updates still pass all of the old tests.
 //     Follow the same TDD process for the third requirement, creating a test named testToStringHandlesEmptyField.
 
-    @Test  // This Passes but hates the +1 to get id??? ask TA?
+    @Test  // This Passes but hates the +1 to get id??? ask Justus?
     public void testToStringContainsCorrectLabelsAndData() {
         Job setFields = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality Control"), new CoreCompetency("Persistence"));
         String jobTest = setFields.toString();
