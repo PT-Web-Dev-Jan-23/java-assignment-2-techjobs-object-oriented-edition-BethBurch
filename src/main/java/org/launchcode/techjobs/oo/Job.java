@@ -47,9 +47,34 @@ public class Job {
     }
 
 
-    @Override //still fails :(
+    private String output(String field, String dataEntered) {
+        String colon = ": ";
+        if (dataEntered == null || dataEntered.isEmpty()) {
+            dataEntered = "Data not available";
+        }
+        return field + colon + dataEntered;
+    }
+    @Override
     public String toString() {
+        String idOutput = output("ID", String.valueOf(this.id));
+        String nameOutput = output("Name", this.name);
+        String employerOutput = output("Employer", String.valueOf(this.employer));
+        String locationOutput = output("Location", String.valueOf(this.location));
+        String positionTypeOutput = output("Position Type", String.valueOf(this.positionType));
+        String coreCompetencyOutput = output("Core Competency", String.valueOf(this.coreCompetency));
+
         return "\n" +
+                idOutput +
+                "\n" +
+                nameOutput +
+                "\n" +
+                employerOutput +
+                "\n" +
+                locationOutput +
+                "\n" +
+                positionTypeOutput +
+                "\n" +
+                coreCompetencyOutput +
                 "\n";
     }
 
