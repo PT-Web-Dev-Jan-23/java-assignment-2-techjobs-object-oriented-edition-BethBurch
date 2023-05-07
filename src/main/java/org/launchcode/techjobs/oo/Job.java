@@ -165,4 +165,5 @@ public class Job {
 
         this.coreCompetency = coreCompetency;
     }
+
 }

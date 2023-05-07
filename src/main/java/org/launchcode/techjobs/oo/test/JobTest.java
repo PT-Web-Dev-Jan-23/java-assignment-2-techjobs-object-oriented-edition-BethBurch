@@ -74,7 +74,8 @@ public class JobTest {
 //    TODO: Code a new test for the second required behavior, named testToStringContainsCorrectLabelsAndData.
 //     Then run the tests to make sure the new one fails.
 //     Modify toString to make the new test pass. Also, make sure that your updates still pass all of the old tests.
-//     Follow the same TDD process for the third requirement, creating a test named testToStringHandlesEmptyField.
+//     Follow the same TDD process for the third requirement,
+//     creating a test named testToStringHandlesEmptyField.
 
     @Test // removed the plus 1 to set fields
     public void testToStringContainsCorrectLabelsAndData() {
