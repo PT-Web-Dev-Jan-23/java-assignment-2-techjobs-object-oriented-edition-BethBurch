@@ -66,9 +66,9 @@ public class JobTest {
     @Test
     public void testToStringStartsAndEndsWithNewLine(){
         Job setFields = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality Control"), new CoreCompetency("Persistence"));
-        String jobTest = setFields.toString();
-        assertEquals(jobTest.charAt(0), '\n');
-        assertEquals(jobTest.charAt(jobTest.length() - 1), '\n');
+        String testingJobClass = setFields.toString();
+        assertEquals(testingJobClass.charAt(0), '\n');
+        assertEquals(testingJobClass.charAt(testingJobClass.length() - 1), '\n');
 
     }
 //    TODO: Code a new test for the second required behavior, named testToStringContainsCorrectLabelsAndData.
@@ -76,11 +76,11 @@ public class JobTest {
 //     Modify toString to make the new test pass. Also, make sure that your updates still pass all of the old tests.
 //     Follow the same TDD process for the third requirement, creating a test named testToStringHandlesEmptyField.
 
-    @Test  // This Passes but hates the +1 to get id??? ask Justus?
+    @Test // removed the plus 1 to set fields
     public void testToStringContainsCorrectLabelsAndData() {
         Job setFields = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality Control"), new CoreCompetency("Persistence"));
-        String jobTest = setFields.toString();
-        assertEquals(jobTest, "\nID: " + (setFields.getId() + 1) + "\n" +
+        String testingJobClass = setFields.toString();
+        assertEquals(testingJobClass, "\nID: " + (setFields.getId()) + "\n" +
                 "Name: Product tester\n" +
                 "Employer: ACME\n" +
                 "Location: Desert\n" +
@@ -89,34 +89,26 @@ public class JobTest {
     }
 //    @Test
 //    public void testToStringHandlesEmptyField() {
-//        String jobTest = jobTest.toString();
+//        String testingJobClass = testingJobClass.toString();
 //        String expectedValue = “OOPS! This job does not seem to exist.”;
-//        assertEquals(expectedValue, jobTest.toString());
+//        assertEquals(expectedValue, testingJobClass.toString());
 //    }
 
-    @Test //PASS
+    @Test
     public void testToStringHandlesEmptyField() {
-        Job setFields = new Job("Product tester", null, null, null, null);
-        String jobTest = setFields.toString();
-        assertEquals(jobTest, "\n" +
-                "ID: " +
-                (setFields.getId()) +
-                "\n" +
-                "Name: " +
-                (setFields.getName()) +
-                "\n" +
-                "Employer: " +
-                (setFields.getEmployer()) +
-                "\n" +
-                "Location: " +
-                (setFields.getLocation()) +
-                "\n" +
-                "Position Type: " +
-                (setFields.getPositionType()) +
-                "\n" +
-                "Core Competency: " +
-                (setFields.getCoreCompetency()) +
-                "\n");
+
+        Job testJobClass = new Job("Product tester", new Employer("ACME"), new Location(null), new PositionType(null), new CoreCompetency(null));
+//new Job object (testJobClass)
+        String expectedValue = "\n" + "ID: " + testJobClass.getId() + "\n" +
+                "Name: " + testJobClass.getName() + "\n" +
+                "Employer: " + testJobClass.getEmployer() + "\n" +
+                "Location: " + "Data not available" + "\n" +
+                "Position Type: " + "Data not available" + "\n" +
+                "Core Competency: " + "Data not available" + "\n";
+
+        assertEquals(expectedValue, testJobClass.toString());
+//assertEquals method is used to compare the expected value with the actual result of calling the toString
+// method on the testJobClass object. If the values are not equal, the test will fail.
     }
     }
 

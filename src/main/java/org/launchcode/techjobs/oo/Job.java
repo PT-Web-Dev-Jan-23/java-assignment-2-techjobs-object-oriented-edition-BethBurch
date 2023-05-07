@@ -47,46 +47,60 @@ public class Job {
 
     @Override
     public int hashCode() {
+
         return Objects.hash(getId());
     }
-
-    //This code defines a private method named output that takes two parameters: a String field and a String
-    // dataEntered. It returns a concatenated string of field, colon and dataEntered.
-    private String output(String field, String dataEntered) {
-//    Inside the method, a colon variable is declared and initialized to the string value ": "
-        String colon = ": ";
-        if (dataEntered == null || dataEntered.isEmpty()) {
-            dataEntered = "Data not available";
-            //The if statement checks if dataEntered is null OR empty. If it is, dataEntered is assigned the string "Data not available".
+//StringBuilder is a class in Java that is used to create and manipulate strings.
+// constructs strings  it allows you to modify the contents of the string
+// without creating a new string object each time. From John
+    @Override
+    public String toString() {
+        StringBuilder newStringData = new StringBuilder("\n" + "ID: " + getId() + "\n");
+//  This code overrides the default toString method for the class and creates a new StringBuilder
+//  instance with the job's ID.
+        if (getName() != null) {
+            newStringData.append("Name: " + getName() + "\n");
+        } else {
+            newStringData.append("Name: " + "Data not available" + "\n");
         }
-        return field + colon + dataEntered;
+//This code checks whether the job's name is not null and appends it to the newStringData StringBuilder if it's not
+// null. Otherwise, it appends the message "Data not available" to the newStringData StringBuilder.
+        if (getEmployer().toString() != null && getEmployer().toString() != "") {
+            newStringData.append("Employer: " + getEmployer() + "\n");
+        } else {
+            newStringData.append("Employer: " + "Data not available" + "\n");
+        }
+        if (getLocation().toString() != null && getLocation().toString() != "") {
+            newStringData.append("Location: " + getLocation() + "\n");
+        } else {
+            newStringData.append("Location: " + "Data not available" + "\n");
+        }
+        if (getPositionType().toString() != null && getPositionType().toString() != "") {
+            newStringData.append("Position Type: " + getPositionType() + "\n");
+        } else {
+            newStringData.append("Position Type: " + "Data not available" + "\n");
+        }
+        if (getCoreCompetency().toString() != null && getCoreCompetency().toString() != "") {
+            newStringData.append("Core Competency: " + getCoreCompetency() + "\n");
+        } else {
+            newStringData.append("Core Competency: " + "Data not available" + "\n");
+        }
+        if (
+                (getName() == null || getName() == "") &&
+                        (getEmployer().toString() == null || getEmployer().toString() == "") &&
+                        (getLocation().toString() == null || getLocation().toString() == "") &&
+                        (getPositionType().toString() == null || getPositionType().toString() == "") &&
+                        (getCoreCompetency().toString() == null || getCoreCompetency().toString() == "")
+        ) {
+            return "OOPS! This job does not seem to exist.";
+        } else {
+
+            return newStringData.toString();
+        }
     }
 
 //  overrides the toString() method of the Object class, which is called when a String representation of an
 //    object is needed. It returns a string that contains the values of the fields of a Job object.
-    @Override
-    public String toString() {
-        String idOutput = output("ID", String.valueOf(this.id));
-        String nameOutput = output("Name", this.name);
-        String employerOutput = output("Employer", String.valueOf(this.employer));
-        String locationOutput = output("Location", String.valueOf(this.location));
-        String positionTypeOutput = output("Position Type", String.valueOf(this.positionType));
-        String coreCompetencyOutput = output("Core Competency", String.valueOf(this.coreCompetency));
-
-        return "\n" +
-                idOutput +
-                "\n" +
-                nameOutput +
-                "\n" +
-                employerOutput +
-                "\n" +
-                locationOutput +
-                "\n" +
-                positionTypeOutput +
-                "\n" +
-                coreCompetencyOutput +
-                "\n";
-    }
 
     // TODO: Add getters for each field EXCEPT nextId. Add setters for each field EXCEPT nextID
     //  and id.
